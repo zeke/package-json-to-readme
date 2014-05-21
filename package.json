@@ -37,6 +37,7 @@
   },
   "preferGlobal": true,
   "devDependencies": {
-    "nixt": "^0.3.0"
+    "nixt": "^0.3.0",
+    "mocha": "^1.19.0"
   }
 }
