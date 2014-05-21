@@ -5,7 +5,7 @@ var fs = require("fs")
 var gh = require("github-url-to-object")
 
 if (process.argv.length != 3) {
-  return process.stderr.write("Usage: readme path/to/package.json")
+  return console.error("Usage: readme path/to/package.json")
 }
 
 var pkg = require(process.argv[2])
