@@ -1,0 +1,42 @@
+{
+  "name": "package-json-to-readme",
+  "version": "0.1.0",
+  "description": "Generate a README.md from package.json contents",
+  "main": "index.js",
+  "usage": {
+    "lang": "sh",
+    "content": "readme path/to/package.json > README.md"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zeke/package-json-to-readme"
+  },
+  "keywords": [
+    "package.json",
+    "readme",
+    "generator",
+    "markdown",
+    "documentation"
+  ],
+  "author": "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zeke/package-json-to-readme/issues"
+  },
+  "homepage": "https://github.com/zeke/package-json-to-readme",
+  "dependencies": {
+    "hogan.js": "^2.0.0",
+    "github-url-to-object": "^0.5.3"
+  },
+  "bin": {
+    "package-json-to-readme": "index.js",
+    "readme": "index.js"
+  },
+  "preferGlobal": true,
+  "devDependencies": {
+    "nixt": "^0.3.0"
+  }
+}
