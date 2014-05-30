@@ -1,0 +1,7 @@
+{
+  "name": "sample",
+  "description": "A sample app.",
+  "scripts": {
+    "test": "mocha"
+  }
+}

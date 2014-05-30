@@ -14,8 +14,22 @@ npm install package-json-to-readme --global
 
 ## Usage
 
+Write to `stdout`:
+
 ```sh
-readme path/to/package.json > README.md
+readme package.json
+```
+
+Pipe output into a new file:
+
+```sh
+readme package.json > README.md
+```
+
+Add a Travis badge:
+
+```sh
+readme package.json --travis > README.md
 ```
 
 ## Tests

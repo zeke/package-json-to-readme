@@ -1,0 +1,15 @@
+{
+  "name": "sample",
+  "description": "A sample app.",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bob/thing"
+  },
+  "keywords": ["foo", "bar"],
+  "author": "Bob Boilerplate",
+  "license": "MIT",
+  "preferGlobal": true
+}

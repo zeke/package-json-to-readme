@@ -41,5 +41,6 @@ npm test
 
 {{license}}
 
-{{author}}
+{{{author}}}
+
 {{/license}}
