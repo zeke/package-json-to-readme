@@ -4,44 +4,95 @@ describe("readme", function() {
 
   it("writes markdown to stdout", function(done) {
     nixt()
-      .run('./index.js test/fixtures/global.json')
+      .run('./index.js test/fixtures/global/package.json')
       .stdout(/# sample/)
-      .end(done)
-  })
-
-  it("adds --global install flag if preferGlobal is true", function(done) {
-    nixt()
-      .run('./index.js test/fixtures/global.json')
-      .stdout(/npm install sample --global/)
-      .end(done)
-  })
-
-  it("adds --save install flag if preferGlobal is falsy", function(done) {
-    nixt()
-      .run('./index.js test/fixtures/local.json')
-      .stdout(/npm install sample --save/)
-      .end(done)
-  })
-
-  it("supports a --travis flag", function(done) {
-    nixt()
-      .run('./index.js test/fixtures/local.json --travis')
-      .stdout(/travis-ci/)
-      .end(done)
-  })
-
-  it("fails with message if --travis flag is set and repository.url is missing", function(done) {
-    nixt()
-      .run('./index.js test/fixtures/missing-travis-stuff.json --travis')
-      .stderr(/must be a GitHub repository URL/)
       .end(done)
   })
 
   it("fails with message if package.json is invalid", function(done) {
     nixt()
-      .run('./index.js test/fixtures/invalid.json')
+      .run('./index.js test/fixtures/invalid/package.json')
       .stderr(/Invalid JSON file/)
       .end(done)
+  })
+
+  describe("installation", function(){
+
+    it("adds --global if preferGlobal is true", function(done) {
+      nixt()
+        .run('./index.js test/fixtures/global/package.json')
+        .stdout(/npm install sample --global/)
+        .end(done)
+    })
+
+    it("adds --save if preferGlobal is falsy", function(done) {
+      nixt()
+        .run('./index.js test/fixtures/local/package.json')
+        .stdout(/npm install sample --save/)
+        .end(done)
+    })
+
+  })
+
+  describe("travis", function(){
+
+    it("adds badge markdown if --travis is set", function(done) {
+      nixt()
+        .run('./index.js test/fixtures/local/package.json --travis')
+        .stdout(/travis-ci/)
+        .end(done)
+    })
+
+    it("fails if repository.url is missing", function(done) {
+      nixt()
+        .run('./index.js test/fixtures/missing-travis-stuff/package.json --travis')
+        .stderr(/must be a GitHub repository URL/)
+        .end(done)
+    })
+
+  })
+
+  describe("usage", function(){
+
+    it("injects example.js into output", function(done){
+      nixt()
+        .run('./index.js test/fixtures/example-js/package.json')
+        .stdout(/hello from javascript/)
+        .end(done)
+    })
+
+    it("injects example.sh into output", function(done){
+      nixt()
+        .run('./index.js test/fixtures/example-sh/package.json')
+        .stdout(/hello from bash/)
+        .end(done)
+    })
+
+    it("replaces relative require path with package name", function(done){
+      nixt()
+        .run('./index.js test/fixtures/example-js/package.json')
+        .stdout(/var sample = require\("sample"\)/)
+        .end(done)
+    })
+
+  })
+
+  describe("deps", function(){
+
+    it("prints out dependency metadata", function(done){
+      nixt()
+        .run('./index.js test/fixtures/deps/package.json')
+        .stdout(/minimist/)
+        .end(done)
+    })
+
+    it("prints out devDependency metadata", function(done){
+      nixt()
+        .run('./index.js test/fixtures/deps/package.json')
+        .stdout(/mocha/)
+        .end(done)
+    })
+
   })
 
 })

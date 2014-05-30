@@ -2,6 +2,8 @@
 
 var hogan = require("hogan.js")
 var fs = require("fs")
+var path = require("path")
+var util = require("util")
 var argv = require('minimist')(process.argv.slice(2))
 var gh = require("github-url-to-object")
 
@@ -21,6 +23,38 @@ if (argv.travis) {
   } else {
     return console.error("`repository.url` must be a GitHub repository URL for Travis to work")
   }
+}
+
+// Look for example.js or example.sh in package.json directory
+["js", "sh"].forEach(function(language){
+  var exampleFile = path.dirname(process.argv[2]) + "/example." + language
+  if (fs.existsSync(exampleFile)) {
+    pkg.usage = {
+      language: language,
+      content: fs.readFileSync(exampleFile).toString()
+    }
+
+    // replace require('./') statement with the package name
+    if (language === "js") {
+      pkg.usage.content = pkg.usage.content.replace(
+        /require\(['"]?\.\/['"]?\)/,
+        util.format("require(\"%s\")", pkg.name)
+      )
+    }
+
+  }
+})
+
+if (pkg.dependencies) {
+  pkg.depDetails = Object.keys(pkg.dependencies).map(function(dep){
+    return require(path.dirname(process.argv[2]) + "/node_modules/" + dep + "/package.json")
+  })
+}
+
+if (pkg.devDependencies) {
+  pkg.devDepDetails = Object.keys(pkg.devDependencies).map(function(dep){
+    return require(path.dirname(process.argv[2]) + "/node_modules/" + dep + "/package.json")
+  })
 }
 
 var template = hogan.compile(fs.readFileSync(__dirname + "/template.md").toString())
