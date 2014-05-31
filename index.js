@@ -27,7 +27,8 @@ if (argv.travis) {
 
 // Look for example.js or example.sh in package.json directory
 ["js", "sh"].forEach(function(language){
-  var exampleFile = path.dirname(process.argv[2]) + "/example." + language
+
+  var exampleFile = path.resolve(path.dirname(process.argv[2])) + "/example." + language
   if (fs.existsSync(exampleFile)) {
     pkg.usage = {
       language: language,
@@ -47,13 +48,13 @@ if (argv.travis) {
 
 if (pkg.dependencies) {
   pkg.depDetails = Object.keys(pkg.dependencies).map(function(dep){
-    return require(path.dirname(process.argv[2]) + "/node_modules/" + dep + "/package.json")
+    return require(path.resolve(path.dirname(process.argv[2])) + "/node_modules/" + dep + "/package.json")
   })
 }
 
 if (pkg.devDependencies) {
   pkg.devDepDetails = Object.keys(pkg.devDependencies).map(function(dep){
-    return require(path.dirname(process.argv[2]) + "/node_modules/" + dep + "/package.json")
+    return require(path.resolve(path.dirname(process.argv[2])) + "/node_modules/" + dep + "/package.json")
   })
 }
 
