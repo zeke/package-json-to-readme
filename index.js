@@ -46,17 +46,19 @@ if (argv.travis) {
   }
 })
 
-if (pkg.dependencies) {
-  pkg.depDetails = Object.keys(pkg.dependencies).map(function(dep){
-    return require(path.resolve(path.dirname(process.argv[2])) + "/node_modules/" + dep + "/package.json")
+
+var getDeps = function(deps) {
+  return Object.keys(deps).map(function(depname){
+    var dep = require(path.resolve(path.dirname(process.argv[2])) + "/node_modules/" + depname + "/package.json")
+    if (dep.repository && dep.repository.url && gh(dep.repository.url)) {
+      dep.repository.url = gh(dep.repository.url).https_url
+    }
+    return dep
   })
 }
 
-if (pkg.devDependencies) {
-  pkg.devDepDetails = Object.keys(pkg.devDependencies).map(function(dep){
-    return require(path.resolve(path.dirname(process.argv[2])) + "/node_modules/" + dep + "/package.json")
-  })
-}
+if (pkg.dependencies) pkg.depDetails = getDeps(pkg.dependencies)
+if (pkg.devDependencies) pkg.devDepDetails = getDeps(pkg.devDependencies)
 
 var template = hogan.compile(fs.readFileSync(__dirname + "/template.md").toString())
 

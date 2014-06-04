@@ -1,4 +1,5 @@
-var nixt = require('nixt')
+var assert = require("assert")
+var nixt = require("nixt")
 
 describe("readme", function() {
 
@@ -90,6 +91,14 @@ describe("readme", function() {
       nixt()
         .run('./index.js test/fixtures/deps/package.json')
         .stdout(/mocha/)
+        .end(done)
+    })
+
+    it("converts git-protocol repository URLs to https", function(done){
+      assert(require(__dirname + "/fixtures/deps/node_modules/minimist/package.json").repository.url.match("git://github.com/substack"))
+      nixt()
+        .run('./index.js test/fixtures/deps/package.json')
+        .stdout(/https:\/\/github\.com\/substack\/minimist/)
         .end(done)
     })
 
