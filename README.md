@@ -39,15 +39,15 @@ npm test
 
 ## Dependencies
 
-- [hogan.js](https://github.com/twitter/hogan.js.git): A mustache compiler.
-- [minimist](git://github.com/substack/minimist.git): parse argument options
+- [hogan.js](https://github.com/twitter/hogan.js): A mustache compiler.
+- [minimist](https://github.com/substack/minimist): parse argument options
 - [github-url-to-object](https://github.com/zeke/github-url-to-object): Extract user, repo, and other interesting properties from GitHub URLs
 
 
 ## Dev Dependencies
 
-- [nixt](git://github.com/vesln/nixt.git): Simple and powerful testing for command-line apps
-- [mocha](git://github.com/visionmedia/mocha.git): simple, flexible, fun test framework
+- [nixt](https://github.com/vesln/nixt): Simple and powerful testing for command-line apps
+- [mocha](https://github.com/visionmedia/mocha): simple, flexible, fun test framework
 
 
 ## License
