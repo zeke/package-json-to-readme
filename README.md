@@ -1,4 +1,4 @@
-# package-json-to-readme 
+# package-json-to-readme [![Build Status](https://travis-ci.org/zeke/package-json-to-readme.png?branch=master)](https://travis-ci.org/zeke/package-json-to-readme)
 
 Generate a README.md from package.json contents
 
