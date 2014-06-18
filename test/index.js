@@ -1,3 +1,5 @@
+"use strict";
+
 var assert = require("assert")
 var nixt = require("nixt")
 
@@ -30,24 +32,6 @@ describe("readme", function() {
       nixt()
         .run('./index.js test/fixtures/local/package.json')
         .stdout(/npm install sample --save/)
-        .end(done)
-    })
-
-  })
-
-  describe("travis", function(){
-
-    it("adds badge markdown if --travis is set", function(done) {
-      nixt()
-        .run('./index.js test/fixtures/local/package.json --travis')
-        .stdout(/travis-ci/)
-        .end(done)
-    })
-
-    it("fails if repository.url is missing", function(done) {
-      nixt()
-        .run('./index.js test/fixtures/missing-travis-stuff/package.json --travis')
-        .stderr(/must be a GitHub repository URL/)
         .end(done)
     })
 
@@ -102,6 +86,28 @@ describe("readme", function() {
         .end(done)
     })
 
+  })
+
+  describe("--travis flag", function(){
+
+    it("adds badge markdown", function(done) {
+      nixt()
+        .run('./index.js test/fixtures/local/package.json --travis')
+        .stdout(/travis-ci/)
+        .end(done)
+    })
+
+    it("fails if repository.url is missing", function(done) {
+      nixt()
+        .run('./index.js test/fixtures/missing-travis-stuff/package.json --travis')
+        .stderr(/must be a GitHub repository URL/)
+        .end(done)
+    })
+
+  })
+
+  describe("--tests flag", function(){
+    it("can't easily be tested without creating an infinitely recursing test.")
   })
 
 })

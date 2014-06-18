@@ -20,13 +20,19 @@ readme package.json
 readme package.json > README.md
 
 # Add a Travis badge
-readme package.json --travis > README.md
+readme package.json --travis
+
+# Run tests and add their output
+readme package.json --tests
+
+# Do it all
+readme package.json --tests --travis > README.md
 
 # If your package has an example.sh or example.js file, it will be used to
 # generate a usage section like this one.
 
-# If you use require("./") in example.js, the relative path will be replaced
-# with the package name.
+# If your example.js has a require("./") statement, the relative path will be
+# replaced with the package name.
 
 ```
 
@@ -37,11 +43,41 @@ npm install
 npm test
 ```
 
+```
+
+> package-json-to-readme@0.2.3 test /Users/zeke/code/personal/package-json-to-readme
+> mocha
+  readme
+    ✓ writes markdown to stdout (97ms)
+    ✓ fails with message if package.json is invalid (95ms)
+    installation
+      ✓ adds --global if preferGlobal is true (86ms)
+      ✓ adds --save if preferGlobal is falsy (95ms)
+    usage
+      ✓ injects example.js into output (88ms)
+      ✓ injects example.sh into output (97ms)
+      ✓ replaces relative require path with package name (89ms)
+    deps
+      ✓ prints out dependency metadata (96ms)
+      ✓ prints out devDependency metadata (90ms)
+      ✓ converts git-protocol repository URLs to https (95ms)
+    --travis flag
+      ✓ adds badge markdown (89ms)
+      ✓ fails if repository.url is missing (94ms)
+    --tests flag
+      - can't easily be tested without creating an infinitely recursing test.
+  12 passing (1s)
+  1 pending
+
+```
+
 ## Dependencies
 
+- [exec-sync](https://github.com/jeremyfa/node-exec-sync): Execute shell command synchronously. Use this for migration scripts, cli programs, but not for regular server code.
+- [github-url-to-object](https://github.com/zeke/github-url-to-object): Extract user, repo, and other interesting properties from GitHub URLs
 - [hogan.js](https://github.com/twitter/hogan.js): A mustache compiler.
 - [minimist](https://github.com/substack/minimist): parse argument options
-- [github-url-to-object](https://github.com/zeke/github-url-to-object): Extract user, repo, and other interesting properties from GitHub URLs
+- [strip-ansi](https://github.com/sindresorhus/strip-ansi): Strip ANSI escape codes
 
 
 ## Dev Dependencies

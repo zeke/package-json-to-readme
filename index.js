@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+'use strict';
 
 var hogan = require("hogan.js")
 var fs = require("fs")
@@ -6,6 +7,8 @@ var path = require("path")
 var util = require("util")
 var argv = require('minimist')(process.argv.slice(2))
 var gh = require("github-url-to-object")
+var execSync = require("exec-sync");
+var stripAnsi = require('strip-ansi');
 
 if (!argv._.length) {
   return console.error("Usage: readme path/to/package.json")
@@ -25,10 +28,17 @@ if (argv.travis) {
   }
 }
 
+// Run tests and fetch output
+if (argv.tests || argv.test) {
+  pkg.testOutput = stripAnsi(execSync('npm test'))
+    .replace(/\r/g, "")     // remove weird newlines
+    .replace(/\n+/g, "\n"); // remove excess newlines
+}
+
 // Look for example.js or example.sh in package.json directory
 ["js", "sh"].forEach(function(language){
 
-  var exampleFile = path.resolve(path.dirname(process.argv[2])) + "/example." + language
+  var exampleFile = path.resolve(path.dirname(process.argv[2])) + "/example." + language;
   if (fs.existsSync(exampleFile)) {
     pkg.usage = {
       language: language,
@@ -46,7 +56,6 @@ if (argv.travis) {
   }
 })
 
-
 var getDeps = function(deps) {
   return Object.keys(deps).map(function(depname){
     var dep = require(path.resolve(path.dirname(process.argv[2])) + "/node_modules/" + depname + "/package.json")
@@ -57,8 +66,8 @@ var getDeps = function(deps) {
   })
 }
 
-if (pkg.dependencies) pkg.depDetails = getDeps(pkg.dependencies)
-if (pkg.devDependencies) pkg.devDepDetails = getDeps(pkg.devDependencies)
+if (pkg.dependencies) pkg.depDetails = getDeps(pkg.dependencies);
+if (pkg.devDependencies) pkg.devDepDetails = getDeps(pkg.devDependencies);
 
 var template = hogan.compile(fs.readFileSync(__dirname + "/template.md").toString())
 

@@ -32,6 +32,10 @@ npm test
 ```
 {{/scripts.test}}
 
+```
+{{{testOutput}}}
+```
+
 ## Dependencies
 
 {{#depDetails}}
