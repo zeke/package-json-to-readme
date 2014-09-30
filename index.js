@@ -14,10 +14,12 @@ if (!argv._.length) {
   return console.error("Usage: readme path/to/package.json")
 }
 
+var pkgPath = path.resolve(process.cwd(), process.argv[2])
+
 try {
-  var pkg = require(process.argv[2])
+  var pkg = require(pkgPath)
 } catch(e) {
-  return console.error("Invalid JSON file: %s", process.argv[2])
+  return console.error("Invalid JSON file: %s", pkgPath)
 }
 
 if (argv.travis) {
