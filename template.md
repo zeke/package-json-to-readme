@@ -31,7 +31,6 @@ npm install
 npm test
 ```
 {{/scripts.test}}
-
 {{#testOutput}}
 ```
 {{{testOutput}}}
@@ -43,7 +42,6 @@ npm test
 {{#depDetails}}
 - [{{name}}]({{repository.url}}): {{description}}
 {{/depDetails}}
-
 {{^depDetails}}
 None
 {{/depDetails}}
