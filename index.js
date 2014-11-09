@@ -22,6 +22,8 @@ try {
   return console.error("Invalid JSON file: %s", pkgPath)
 }
 
+pkg.private = pkg.private || false;
+
 if (argv.travis) {
   if (pkg.repository && pkg.repository.url && gh(pkg.repository.url)) {
     pkg.travis_url = gh(pkg.repository.url).travis_url

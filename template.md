@@ -2,6 +2,7 @@
 
 {{description}}
 
+{{^private}}
 ## Installation
 
 Download node at [nodejs.org](http://nodejs.org) and install it, if you haven't already.
@@ -14,6 +15,7 @@ npm install {{name}} --global
 npm install {{name}} --save
 {{/preferGlobal}}
 ```
+{{/private}}
 
 {{#usage}}
 ## Usage

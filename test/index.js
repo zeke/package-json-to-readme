@@ -35,6 +35,15 @@ describe("readme", function() {
         .end(done)
     })
 
+    it("does not write installation instructions", function(done){
+      nixt()
+        .run('./index.js test/fixtures/private/package.json')
+        .stdout(/installation/)
+        .end(function(err) {
+          if(err) done()
+        })
+    })
+
   })
 
   describe("usage", function(){
