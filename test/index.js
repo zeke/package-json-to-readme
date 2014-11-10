@@ -35,15 +35,17 @@ describe("readme", function() {
         .end(done)
     })
 
-    it("does not write installation instructions", function(done){
+    it("does not write installation instructions", function(done) {
       nixt()
-        .run('./index.js test/fixtures/private/package.json')
-        .stdout(/installation/)
-        .end(function(err) {
-          if(err) done()
+        .expect(function(result) {
+          if (result.stdout.match("installation")) {
+            return new Error("installation instructions should not be displayed for private packages")
+          }
         })
+        .run('./index.js test/fixtures/private/package.json')
+        .end(done)
     })
-
+    
   })
 
   describe("usage", function(){
