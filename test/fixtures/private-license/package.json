@@ -1,6 +1,5 @@
 {
-  "name": "private-true",
-  "private": "true",
+  "name": "private-license",
   "description": "A sample app.",
   "scripts": {
     "test": "mocha"
@@ -11,5 +10,5 @@
   },
   "keywords": ["foo", "bar"],
   "author": "Bob Boilerplate",
-  "license": "MIT"
+  "license": "private"
 }
