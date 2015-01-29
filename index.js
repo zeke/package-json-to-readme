@@ -60,6 +60,9 @@ if (argv.tests || argv.test) {
   }
 })
 
+// Disable generated-by footer with --no-footer
+pkg.footer = argv['footer'] !== false
+
 var getDeps = function(deps) {
   return Object.keys(deps).map(function(depname){
     var dep = require(path.resolve(path.dirname(process.argv[2])) + "/node_modules/" + depname + "/package.json")
