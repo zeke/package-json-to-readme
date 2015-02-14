@@ -26,7 +26,6 @@
   "dependencies": {
     "github-url-to-object": "^0.5.3",
     "hogan.js": "^2.0.0",
-    "minimist": "^0.1.0",
     "shelljs": "^0.3.0",
     "strip-ansi": "^0.2.2",
     "yargs": "^3.0.4"
