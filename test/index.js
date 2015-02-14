@@ -45,7 +45,7 @@ describe("readme", function() {
         .run('./index.js test/fixtures/private/package.json')
         .end(done)
     })
-    
+
   })
 
   describe("usage", function(){
