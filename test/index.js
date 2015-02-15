@@ -56,7 +56,6 @@ describe("readme", function() {
         .run('./index.js test/fixtures/private-license/package.json')
         .end(done)
     })
-
   })
 
   describe("usage", function(){

@@ -5,16 +5,29 @@ var hogan = require("hogan.js")
 var fs = require("fs")
 var path = require("path")
 var util = require("util")
-var argv = require('minimist')(process.argv.slice(2))
+var argv = require('yargs')
+  .usage('Usage: readme path/to/package.json')
+  .check(function(argv) {
+    if (!argv._.length) throw 'must provide path to package.json';
+    return true;
+  })
+  .option('r', {
+    alias: 'travis',
+    description: 'should a travis URL be parsed?'
+  })
+  .option('t', {
+    alias: 'test',
+    description: 'should test output be included?'
+  })
+  .alias('t', 'tests')
+  .help('help')
+  .alias('h', 'help')
+  .argv;
 var gh = require("github-url-to-object")
-var execSync = require("exec-sync");
+var execSync = require('shelljs').exec;
 var stripAnsi = require('strip-ansi');
 
-if (!argv._.length) {
-  return console.error("Usage: readme path/to/package.json")
-}
-
-var pkgPath = path.resolve(process.cwd(), process.argv[2])
+var pkgPath = path.resolve(process.cwd(), argv._[0])
 
 try {
   var pkg = require(pkgPath)
@@ -34,7 +47,7 @@ if (argv.travis) {
 
 // Run tests and fetch output
 if (argv.tests || argv.test) {
-  pkg.testOutput = stripAnsi(execSync('npm test'))
+  pkg.testOutput = stripAnsi(execSync('npm test', {silent: true}).output)
     .replace(/\r/g, "")     // remove weird newlines
     .replace(/\n+/g, "\n"); // remove excess newlines
 }
@@ -42,7 +55,7 @@ if (argv.tests || argv.test) {
 // Look for example.js or example.sh in package.json directory
 ["js", "sh"].forEach(function(language){
 
-  var exampleFile = path.resolve(path.dirname(process.argv[2])) + "/example." + language;
+  var exampleFile = path.resolve(path.dirname(argv._[0])) + "/example." + language;
   if (fs.existsSync(exampleFile)) {
     pkg.usage = {
       language: language,
@@ -65,7 +78,7 @@ pkg.footer = argv['footer'] !== false
 
 var getDeps = function(deps) {
   return Object.keys(deps).map(function(depname){
-    var dep = require(path.resolve(path.dirname(process.argv[2])) + "/node_modules/" + depname + "/package.json")
+    var dep = require(path.resolve(path.dirname(argv._[0])) + "/node_modules/" + depname + "/package.json")
     if (dep.repository && dep.repository.url && gh(dep.repository.url)) {
       dep.repository.url = gh(dep.repository.url).https_url
     }
