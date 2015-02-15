@@ -1,6 +1,6 @@
 # package-json-to-readme [![Build Status](https://travis-ci.org/zeke/package-json-to-readme.png?branch=master)](https://travis-ci.org/zeke/package-json-to-readme)
 
-Generate a README.md from package.json contents
+Generate a README.md from package.json contents. Works with node and io.js.
 
 ## Why?
 
@@ -20,7 +20,7 @@ With npm modules, most of that info can be gleaned from properties in the `packa
 Download node at [nodejs.org](http://nodejs.org) and install it, if you haven't already.
 
 ```sh
-npm install package-json-to-readme --global
+npm i -g package-json-to-readme
 ```
 
 ## Usage
@@ -46,7 +46,6 @@ readme package.json --tests --travis > README.md
 
 # If your example.js has a require("./") statement, the relative path will be
 # replaced with the package name.
-
 ```
 
 ## Tests
@@ -54,34 +53,6 @@ readme package.json --tests --travis > README.md
 ```sh
 npm install
 npm test
-```
-
-```
-
-> package-json-to-readme@0.2.3 test /Users/zeke/code/personal/package-json-to-readme
-> mocha
-  readme
-    ✓ writes markdown to stdout (97ms)
-    ✓ fails with message if package.json is invalid (95ms)
-    installation
-      ✓ adds --global if preferGlobal is true (86ms)
-      ✓ adds --save if preferGlobal is falsy (95ms)
-    usage
-      ✓ injects example.js into output (88ms)
-      ✓ injects example.sh into output (97ms)
-      ✓ replaces relative require path with package name (89ms)
-    deps
-      ✓ prints out dependency metadata (96ms)
-      ✓ prints out devDependency metadata (90ms)
-      ✓ converts git-protocol repository URLs to https (95ms)
-    --travis flag
-      ✓ adds badge markdown (89ms)
-      ✓ fails if repository.url is missing (94ms)
-    --tests flag
-      - can't easily be tested without creating an infinitely recursing test.
-  12 passing (1s)
-  1 pending
-
 ```
 
 ## Dependencies
