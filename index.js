@@ -8,16 +8,20 @@ var util = require("util")
 var argv = require('yargs')
   .usage('Usage: readme path/to/package.json')
   .check(function(argv) {
-    if (!argv._.length) throw 'must provide path to package.json';
+    if (!argv._.length) throw 'A path to a valid package.json is required';
     return true;
   })
   .option('r', {
     alias: 'travis',
-    description: 'should a travis URL be parsed?'
+    description: 'display a travis badge'
   })
   .option('t', {
     alias: 'test',
-    description: 'should test output be included?'
+    description: 'include test output in readme'
+  })
+  .option('n', {
+    alias: 'no-footer',
+    description: 'disable the promotional footer message'
   })
   .alias('t', 'tests')
   .help('help')
