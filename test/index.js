@@ -35,17 +35,28 @@ describe("readme", function() {
         .end(done)
     })
 
-    it("does not write installation instructions", function(done) {
+    it("does not write installation instructions for private: true", function(done) {
       nixt()
         .expect(function(result) {
-          if (result.stdout.match("Installation")) {
-            return new Error("installation instructions should not be displayed for private packages")
+          if (result.stdout.match("installation")) {
+            return new Error("installation instructions should not be displayed for private: true packages")
           }
         })
         .run('./index.js test/fixtures/private/package.json')
         .end(done)
     })
-    
+
+    it("does not write installation instructions for license: private", function(done) {
+      nixt()
+        .expect(function(result) {
+          if (result.stdout.match("Installation")) {
+            return new Error("installation instructions should not be displayed for license: private packages")
+          }
+        })
+        .run('./index.js test/fixtures/private-license/package.json')
+        .end(done)
+    })
+
   })
 
   describe("usage", function(){
