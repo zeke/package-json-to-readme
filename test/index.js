@@ -38,7 +38,7 @@ describe("readme", function() {
     it("does not write installation instructions", function(done) {
       nixt()
         .expect(function(result) {
-          if (result.stdout.match("installation")) {
+          if (result.stdout.match("Installation")) {
             return new Error("installation instructions should not be displayed for private packages")
           }
         })
