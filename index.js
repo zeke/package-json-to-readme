@@ -22,7 +22,7 @@ try {
   return console.error("Invalid JSON file: %s", pkgPath)
 }
 
-pkg.private = pkg.private || false;
+pkg.private = pkg.private || pkg.license === "private" || false;
 
 if (argv.travis) {
   if (pkg.repository && pkg.repository.url && gh(pkg.repository.url)) {
