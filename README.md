@@ -57,18 +57,16 @@ npm test
 
 ## Dependencies
 
-- [exec-sync](https://github.com/jeremyfa/node-exec-sync): Execute shell command synchronously. Use this for migration scripts, cli programs, but not for regular server code.
 - [github-url-to-object](https://github.com/zeke/github-url-to-object): Extract user, repo, and other interesting properties from GitHub URLs
 - [hogan.js](https://github.com/twitter/hogan.js): A mustache compiler.
-- [minimist](https://github.com/substack/minimist): parse argument options
+- [shelljs](https://github.com/arturadib/shelljs): Portable Unix shell commands for Node.js
 - [strip-ansi](https://github.com/sindresorhus/strip-ansi): Strip ANSI escape codes
-
+- [yargs](https://github.com/chevex/yargs): Light-weight option parsing with an argv hash. No optstrings attached.
 
 ## Dev Dependencies
 
+- [mocha](https://github.com/mochajs/mocha): simple, flexible, fun test framework
 - [nixt](https://github.com/vesln/nixt): Simple and powerful testing for command-line apps
-- [mocha](https://github.com/visionmedia/mocha): simple, flexible, fun test framework
-
 
 ## License
 
