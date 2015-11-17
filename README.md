@@ -59,9 +59,9 @@ npm test
 
 - [github-url-to-object](https://github.com/zeke/github-url-to-object): Extract user, repo, and other interesting properties from GitHub URLs
 - [hogan.js](https://github.com/twitter/hogan.js): A mustache compiler.
-- [strip-ansi](https://github.com/sindresorhus/strip-ansi): Strip ANSI escape codes
+- [strip-ansi](https://github.com/chalk/strip-ansi): Strip ANSI escape codes
 - [sync-exec](https://github.com/gvarsanyi/sync-exec): Synchronous exec with status code support. Requires no external dependencies, no need for node-gyp compilations etc.
-- [yargs](https://github.com/chevex/yargs): Light-weight option parsing with an argv hash. No optstrings attached.
+- [yargs](https://github.com/bcoe/yargs): Light-weight option parsing with an argv hash. No optstrings attached.
 
 ## Dev Dependencies
 
