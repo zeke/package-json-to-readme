@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 'use strict';
 
-var hogan = require("hogan.js")
+var mos = require('mos')
+var createAst = require('./lib/create-ast')
 var fs = require("fs")
 var path = require("path")
 var util = require("util")
@@ -15,6 +16,12 @@ var argv = require('yargs')
     alias: 'travis',
     description: 'display a travis badge'
   })
+  .option('b', {
+    alias: 'badges',
+    description: 'include the listed badges'
+  })
+  .array('b')
+  .alias('b', 'shields')
   .option('t', {
     alias: 'test',
     description: 'include test output in readme'
@@ -41,13 +48,11 @@ try {
 
 pkg.private = pkg.private || pkg.license === "private" || false;
 
-if (argv.travis) {
-  if (pkg.repository && pkg.repository.url && gh(pkg.repository.url)) {
-    pkg.travis_url = gh(pkg.repository.url).travis_url
-  } else {
-    return console.error("`repository.url` must be a GitHub repository URL for Travis to work")
-  }
+var badges = argv.badges || []
+if (argv.travis && badges.indexOf('travis') === -1) {
+  badges.push('travis')
 }
+pkg.badges = JSON.stringify(badges)
 
 // Run tests and fetch output
 if (argv.tests || argv.test) {
@@ -80,19 +85,10 @@ if (argv.tests || argv.test) {
 // Disable generated-by footer with --no-footer
 pkg.footer = argv['footer'] !== false
 
-var getDeps = function(deps) {
-  return Object.keys(deps).map(function(depname){
-    var dep = require(path.resolve(path.dirname(argv._[0])) + "/node_modules/" + depname + "/package.json")
-    if (dep.repository && dep.repository.url && gh(dep.repository.url)) {
-      dep.repository.url = gh(dep.repository.url).https_url
-    }
-    return dep
+var ast = createAst(pkg)
+mos().process(ast, { filePath: pkgPath })
+  .then(md => process.stdout.write(md))
+  .catch(err => {
+    console.error(err)
+    process.exit(1);
   })
-}
-
-if (pkg.dependencies) pkg.depDetails = getDeps(pkg.dependencies);
-if (pkg.devDependencies) pkg.devDepDetails = getDeps(pkg.devDependencies);
-
-var template = hogan.compile(fs.readFileSync(__dirname + "/template.md").toString())
-
-process.stdout.write(template.render(pkg))
