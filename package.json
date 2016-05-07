@@ -4,7 +4,8 @@
   "description": "Generate a README.md from package.json contents",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha && mos test -x template.md",
+    "md": "mos -x template.md"
   },
   "repository": {
     "type": "git",
@@ -25,7 +26,8 @@
   "homepage": "https://github.com/zeke/package-json-to-readme",
   "dependencies": {
     "github-url-to-object": "^1.6.0",
-    "hogan.js": "^2.0.0",
+    "markdownscript": "^1.1.0",
+    "mos": "^0.17.0",
     "strip-ansi": "^0.2.2",
     "sync-exec": "^0.5.0",
     "yargs": "^3.0.4"

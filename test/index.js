@@ -24,36 +24,28 @@ describe("readme", function() {
     it("adds --global if preferGlobal is true", function(done) {
       nixt()
         .run('./index.js test/fixtures/global/package.json')
-        .stdout(/npm install sample --global/)
+        .stdout(/npm install --global sample/)
         .end(done)
     })
 
     it("adds --save if preferGlobal is falsy", function(done) {
       nixt()
         .run('./index.js test/fixtures/local/package.json')
-        .stdout(/npm install sample --save/)
+        .stdout(/npm install --save sample/)
         .end(done)
     })
 
-    it("does not write installation instructions for private: true", function(done) {
+    it("suggests to clone the repo for private: true", function(done) {
       nixt()
-        .expect(function(result) {
-          if (result.stdout.match("installation")) {
-            return new Error("installation instructions should not be displayed for private: true packages")
-          }
-        })
         .run('./index.js test/fixtures/private/package.json')
+        .stdout(/git clone/)
         .end(done)
     })
 
-    it("does not write installation instructions for license: private", function(done) {
+    it("suggests to clone the repo for license: private", function(done) {
       nixt()
-        .expect(function(result) {
-          if (result.stdout.match("Installation")) {
-            return new Error("installation instructions should not be displayed for license: private packages")
-          }
-        })
         .run('./index.js test/fixtures/private-license/package.json')
+        .stdout(/git clone/)
         .end(done)
     })
   })
@@ -121,7 +113,19 @@ describe("readme", function() {
     it("fails if repository.url is missing", function(done) {
       nixt()
         .run('./index.js test/fixtures/missing-travis-stuff/package.json --travis')
-        .stderr(/must be a GitHub repository URL/)
+        .stderr(/The shields plugin only works for/)
+        .end(done)
+    })
+
+  })
+
+  describe("--badges flag", function(){
+
+    it("adds badge markdown", function(done) {
+      nixt()
+        .run('./index.js test/fixtures/local/package.json --badges coveralls npm')
+        .stdout(/https:\/\/www\.npmjs\.com\/package\//)
+        .stdout(/https:\/\/coveralls\.io\/r\//)
         .end(done)
     })
 

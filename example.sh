@@ -7,6 +7,9 @@ readme package.json > README.md
 # Add a Travis badge
 readme package.json --travis
 
+# Add a Coveralls, NPM and Dependencies badge
+readme package.json --badges coveralls npm deps
+
 # Run tests and add their output
 readme package.json --tests
 
