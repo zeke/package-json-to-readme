@@ -39,6 +39,15 @@ npm test
 ```
 {{/testOutput}}
 
+## Scripts
+
+{{#scriptList}}
+{{scriptname}}
+```sh
+{{{scriptcode}}}
+```
+{{/scriptList}}
+
 ## Dependencies
 
 {{#depDetails}}

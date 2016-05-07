@@ -90,8 +90,18 @@ var getDeps = function(deps) {
   })
 }
 
+var getScripts = function (scripts) {
+  return Object.keys(scripts).map(function (s) {
+    var script = {};
+    script.scriptname = s;
+    script.scriptcode = scripts[s];
+    return script;
+  })
+}
+
 if (pkg.dependencies) pkg.depDetails = getDeps(pkg.dependencies);
 if (pkg.devDependencies) pkg.devDepDetails = getDeps(pkg.devDependencies);
+if (pkg.scripts) pkg.scriptList = getScripts(pkg.scripts);
 
 var template = hogan.compile(fs.readFileSync(__dirname + "/template.md").toString())
 
