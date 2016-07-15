@@ -1,4 +1,4 @@
-# package-json-to-readme [![Build Status](https://travis-ci.org/zeke/package-json-to-readme.png?branch=master)](https://travis-ci.org/zeke/package-json-to-readme)
+# package-json-to-readme [![Build Status](https://travis-ci.org/VOID404/package-json-to-readme.svg?branch=master)](https://travis-ci.org/VOID404/package-json-to-readme)
 
 Generate a README.md from package.json contents. Works with node and io.js.
 
@@ -20,10 +20,17 @@ With npm modules, most of that info can be gleaned from properties in the `packa
 Download node at [nodejs.org](http://nodejs.org) and install it, if you haven't already.
 
 ```sh
-npm i -g package-json-to-readme
+npm install package-json-to-readme --global
 ```
 
 ## Usage
+
+If your package has an `usage.md` file, it will be used to
+generate a usage section like this one. If package contains
+ an `example.sh` or `example.js` file, it will also be added.
+
+If your `example.js` has a `require("./")` statement, the relative path will be
+replaced with the package name.
 
 ```sh
 # Write to stdout
@@ -41,11 +48,6 @@ readme package.json --tests
 # Do it all
 readme package.json --tests --travis > README.md
 
-# If your package has an example.sh or example.js file, it will be used to
-# generate a usage section like this one.
-
-# If your example.js has a require("./") statement, the relative path will be
-# replaced with the package name.
 ```
 
 ## Tests
@@ -59,7 +61,7 @@ npm test
 
 - [github-url-to-object](https://github.com/zeke/github-url-to-object): Extract user, repo, and other interesting properties from GitHub URLs
 - [hogan.js](https://github.com/twitter/hogan.js): A mustache compiler.
-- [strip-ansi](https://github.com/chalk/strip-ansi): Strip ANSI escape codes
+- [strip-ansi](https://github.com/sindresorhus/strip-ansi): Strip ANSI escape codes
 - [sync-exec](https://github.com/gvarsanyi/sync-exec): Synchronous exec with status code support. Requires no external dependencies, no need for node-gyp compilations etc.
 - [yargs](https://github.com/bcoe/yargs): Light-weight option parsing with an argv hash. No optstrings attached.
 
@@ -67,6 +69,7 @@ npm test
 
 - [mocha](https://github.com/mochajs/mocha): simple, flexible, fun test framework
 - [nixt](https://github.com/vesln/nixt): Simple and powerful testing for command-line apps
+
 
 ## License
 
