@@ -10,5 +10,6 @@
   },
   "keywords": ["foo", "bar"],
   "author": "Bob Boilerplate",
-  "license": "MIT"
+  "license": "MIT",
+  "usage":""
 }
