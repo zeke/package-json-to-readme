@@ -61,14 +61,14 @@ if (argv.tests || argv.test) {
 
   var exampleFile = path.resolve(path.dirname(argv._[0])) + "/example." + language;
   if (fs.existsSync(exampleFile)) {
-    pkg.usage = {
+    pkg.sample = {
       language: language,
       content: fs.readFileSync(exampleFile).toString()
     }
 
     // replace require('./') statement with the package name
     if (language === "js") {
-      pkg.usage.content = pkg.usage.content.replace(
+      pkg.sample.content = pkg.sample.content.replace(
         /require\(['"]?\.\/['"]?\)/,
         util.format("require(\"%s\")", pkg.name)
       )
@@ -76,6 +76,10 @@ if (argv.tests || argv.test) {
 
   }
 })
+var usageFile = path.resolve(path.dirname(argv._[0])) + "/usage.md";
+if (fs.existsSync(usageFile)) {
+  pkg.usage = fs.readFileSync(usageFile).toString()
+}
 
 // Disable generated-by footer with --no-footer
 pkg.footer = argv['footer'] !== false

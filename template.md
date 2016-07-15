@@ -20,9 +20,12 @@ npm install {{name}} --save
 {{#usage}}
 ## Usage
 
+{{{usage}}}
+{{#sample}}
 ```{{language}}
 {{{content}}}
 ```
+{{/sample}}
 {{/usage}}
 
 {{#scripts.test}}
