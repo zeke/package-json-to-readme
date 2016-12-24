@@ -5,8 +5,6 @@
 {{^private}}
 ## Installation
 
-Download node at [nodejs.org](http://nodejs.org) and install it, if you haven't already.
-
 ```sh
 {{#preferGlobal}}
 npm install {{name}} --global
