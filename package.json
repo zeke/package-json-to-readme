@@ -37,7 +37,7 @@
       "mocha": true
     },
     "ignore": [
-      "test/fixtures/deps"
+      "test/fixtures"
     ]
   }
 }
