@@ -1,6 +1,6 @@
 {
   "name": "package-json-to-readme",
-  "version": "1.5.1",
+  "version": "2.0.0",
   "description": "Generate a README.md from package.json contents",
   "main": "index.js",
   "scripts": {
