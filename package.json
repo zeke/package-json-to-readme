@@ -30,7 +30,8 @@
   "preferGlobal": true,
   "devDependencies": {
     "mocha": "^2.1.0",
-    "nixt": "^0.3.0"
+    "nixt": "^0.3.0",
+    "standard": "^8.6.0"
   },
   "standard": {
     "env": {
