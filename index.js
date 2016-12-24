@@ -19,10 +19,6 @@ var argv = require('yargs')
     alias: 'test',
     description: 'include test output in readme'
   })
-  .option('n', {
-    alias: 'no-footer',
-    description: 'disable the promotional footer message'
-  })
   .alias('t', 'tests')
   .help('help')
   .alias('h', 'help')
