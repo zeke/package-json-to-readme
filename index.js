@@ -66,7 +66,7 @@ if (argv.tests || argv.test) {
     if (language === "js") {
       pkg.usage.content = pkg.usage.content.replace(
         /require\(['"]?\.\/['"]?\)/,
-        util.format("require(\"%s\")", pkg.name)
+        util.format("require('%s')", pkg.name)
       )
     }
 
