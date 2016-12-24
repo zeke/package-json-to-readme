@@ -53,7 +53,8 @@ if (argv.tests || argv.test) {
 }
 
 // Look for example.js or example.sh in package.json directory
-["js", "sh"].forEach(function(language){
+var extensions = ["js", "sh"]
+extensions.forEach(function(language){
 
   var exampleFile = path.resolve(path.dirname(argv._[0])) + "/example." + language;
   if (fs.existsSync(exampleFile)) {
