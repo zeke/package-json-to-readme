@@ -1,19 +1,6 @@
-# {{name}} {{#travis_url}}[![Build Status]({{travis_url}}.png?branch=master)]({{travis_url}}){{/travis_url}}
+{{#travis_url}}[![Build Status]({{travis_url}}.png?branch=master)]({{travis_url}}){{/travis_url}}
 
-{{description}}
-
-{{^private}}
 ## Installation
-
-```sh
-{{#preferGlobal}}
-npm install {{name}} --global
-{{/preferGlobal}}
-{{^preferGlobal}}
-npm install {{name}} --save
-{{/preferGlobal}}
-```
-{{/private}}
 
 {{#usage}}
 ## Usage
@@ -56,8 +43,4 @@ None
 None
 {{/devDepDetails}}
 
-{{#license}}
 ## License
-
-{{license}}
-{{/license}}

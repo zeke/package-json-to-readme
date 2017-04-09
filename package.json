@@ -21,6 +21,10 @@
     "hogan.js": "^2.0.0",
     "strip-ansi": "^0.2.2",
     "sync-exec": "^0.5.0",
+    "update-readme": "update-readme/update-readme",
+    "update-readme-name-and-description": "update-readme/update-readme-name-and-description",
+    "update-readme-installation": "update-readme/update-readme-installation",
+    "update-readme-license": "update-readme/update-readme-license",
     "yargs": "^3.0.4"
   },
   "bin": {

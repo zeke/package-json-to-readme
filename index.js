@@ -2,6 +2,7 @@
 'use strict'
 
 var hogan = require('hogan.js')
+var updateReadme = require('update-readme')
 var fs = require('fs')
 var path = require('path')
 var util = require('util')
@@ -90,4 +91,21 @@ if (pkg.devDependencies) pkg.devDepDetails = getDeps(pkg.devDependencies)
 var templatePath = path.join(__dirname, 'template.md')
 var template = hogan.compile(fs.readFileSync(templatePath).toString())
 
-process.stdout.write(template.render(pkg))
+var hoganPass = template.render(pkg)
+
+var config = {
+  readme: hoganPass,
+  plugins: [
+    { module: 'update-readme-name-and-description' },
+    { module: 'update-readme-installation' },
+    { module: 'update-readme-license' }
+  ]
+}
+
+updateReadme(config)
+.then(function (readme) {
+  process.stdout.write(readme)
+})
+.catch(function (err) {
+  console.log(err)
+})
