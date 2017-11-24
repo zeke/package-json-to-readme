@@ -1,4 +1,4 @@
-# {{name}} {{#travis_url}}[![Build Status]({{travis_url}}.png?branch=master)]({{travis_url}}){{/travis_url}}
+# {{name}}{{#travis_url}} [![Build Status]({{travis_url}}.png?branch=master)]({{travis_url}}){{/travis_url}}
 
 {{description}}
 
@@ -21,16 +21,16 @@ npm install {{name}} --save
 {{/preferGlobal}}
 ```
 {{/private}}
-
 {{#usage}}
+
 ## Usage
 
 ```{{language}}
 {{{content}}}
 ```
 {{/usage}}
-
 {{#scripts.test}}
+
 ## Tests
 
 ```sh
@@ -58,7 +58,6 @@ None
 {{#devDepDetails}}
 - [{{name}}]({{repository.url}}): {{description}}
 {{/devDepDetails}}
-
 {{^devDepDetails}}
 None
 {{/devDepDetails}}
