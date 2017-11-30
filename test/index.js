@@ -95,12 +95,12 @@ describe('readme', function () {
         .end(done)
     })
 
-    it('converts git-protocol repository URLs to https', function (done) {
+    it('uses ghub.io for dependency links', function (done) {
       var packagePath = path.join(__dirname, '/fixtures/deps/node_modules/minimist/package.json')
       assert(require(packagePath).repository.url.match('git://github.com/substack'))
       nixt()
         .run('./index.js test/fixtures/deps/package.json')
-        .stdout(/https:\/\/github\.com\/substack\/minimist/)
+        .stdout(/http:\/\/ghub\.io\/minimist/)
         .end(done)
     })
   })
