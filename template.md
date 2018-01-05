@@ -47,7 +47,7 @@ npm test
 ## Dependencies
 
 {{#depDetails}}
-- [{{name}}]({{repository.url}}): {{description}}
+- [{{name}}]({{repository}}): {{description}}
 {{/depDetails}}
 {{^depDetails}}
 None
@@ -56,7 +56,7 @@ None
 ## Dev Dependencies
 
 {{#devDepDetails}}
-- [{{name}}]({{repository.url}}): {{description}}
+- [{{name}}]({{repository}}): {{description}}
 {{/devDepDetails}}
 {{^devDepDetails}}
 None
