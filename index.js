@@ -77,11 +77,7 @@ extensions.forEach(function (language) {
 var getDeps = function (deps) {
   return Object.keys(deps).map(function (depname) {
     var dep = require(path.resolve(path.dirname(argv._[0])) + '/node_modules/' + depname + '/package.json')
-    if (typeof (dep.repository) === 'string' || typeof (dep.repository) === 'undefined') {
-      dep.repository = { url: 'http://ghub.io/' + depname }
-    } else {
-      dep.repository.url = 'http://ghub.io/' + depname
-    }
+    dep.repository = 'https://ghub.io/' + depname
     return dep
   })
 }
