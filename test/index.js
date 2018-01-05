@@ -100,7 +100,7 @@ describe('readme', function () {
       assert(require(packagePath).repository.url.match('git://github.com/substack'))
       nixt()
         .run('./index.js test/fixtures/deps/package.json')
-        .stdout(/http:\/\/ghub\.io\/minimist/)
+        .stdout(/https:\/\/ghub\.io\/minimist/)
         .end(done)
     })
   })
