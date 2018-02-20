@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha && standard",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "repository": "https://github.com/zeke/package-json-to-readme",
   "keywords": [
@@ -33,7 +34,8 @@
     "mocha": "^2.1.0",
     "nixt": "^0.3.0",
     "standard": "^8.6.0",
-    "semantic-release": "^8.2.0"
+    "semantic-release": "^12.4.1",
+    "travis-deploy-once": "^4.3.4"
   },
   "standard": {
     "env": {
