@@ -88,4 +88,5 @@ if (pkg.devDependencies) pkg.devDepDetails = getDeps(pkg.devDependencies)
 var templatePath = path.join(__dirname, 'template.md')
 var template = hogan.compile(fs.readFileSync(templatePath).toString())
 
+process.stdout.setEncoding('utf8')
 process.stdout.write(template.render(pkg))
