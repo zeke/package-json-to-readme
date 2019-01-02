@@ -24,7 +24,7 @@ var argv = require('yargs')
   .alias('h', 'help')
   .argv
 var gh = require('github-url-to-object')
-var execSync = require('sync-exec')
+var childProcess = require('child_process')
 var stripAnsi = require('strip-ansi')
 
 var pkgPath = path.resolve(process.cwd(), argv._[0])
@@ -49,7 +49,7 @@ if (argv.travis) {
 
 // Run tests and fetch output
 if (argv.tests || argv.test) {
-  pkg.testOutput = stripAnsi(execSync('npm test').stdout)
+  pkg.testOutput = stripAnsi(childProcess.execSync('npm test').stdout)
     .replace(/\r/g, '') // remove weird newlines
     .replace(/\n+/g, '\n') // remove excess newlines
 }
