@@ -5,10 +5,10 @@
 {{^private}}
 ## Installation
 
-This is a [Node.js](https://nodejs.org/) module available through the 
-[npm registry](https://www.npmjs.com/). It can be installed using the 
+This is a [Node.js](https://nodejs.org/) module available through the
+[npm registry](https://www.npmjs.com/). It can be installed using the
 [`npm`](https://docs.npmjs.com/getting-started/installing-npm-packages-locally)
-or 
+or
 [`yarn`](https://yarnpkg.com/en/)
 command line tools.
 
@@ -47,7 +47,7 @@ npm test
 ## Dependencies
 
 {{#depDetails}}
-- [{{name}}]({{repository}}): {{description}}
+- [{{name}}]({{repository}}): {{description}}, License: {{license}}
 {{/depDetails}}
 {{^depDetails}}
 None
@@ -56,7 +56,7 @@ None
 ## Dev Dependencies
 
 {{#devDepDetails}}
-- [{{name}}]({{repository}}): {{description}}
+- [{{name}}]({{repository}}): {{description}}, License: {{license}}
 {{/devDepDetails}}
 {{^devDepDetails}}
 None
