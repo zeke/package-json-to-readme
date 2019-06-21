@@ -72,4 +72,5 @@ MIT
 
 ## See Also
 
+- [readme-md-generator](https://github.com/kefranabg/readme-md-generator), a CLI that's able to read your environment (package.json, git config...) to suggest you default answers during the README creation process.
 - [mos](https://github.com/zkochan/mos), a pluggable module that injects content into your markdown files via hidden JavaScript snippets.
